@@ -22,7 +22,7 @@
     <button id="pause" class="btn" onclick="onPause()">Pause Video</button>
   </div>
   <div class="fluid resize" style="text-align:center ">
-
+      <br>
       <input id="newTitle" type="text" name="newTitle" value="Enter new title here"><br><br>
       <button id="changeTitle" class="btn" onclick="onChangeTitle()">Change Title</button>
 
@@ -87,19 +87,15 @@
            }
     }
 
-    function onChangeTitle(){
-      var newtitle=document.getElementById('newTitle').value;
-      var title= {
-        "name": newtitle
-      }
-
-
-
+   function onChangeTitle(){
+      var title =document.getElementById('newTitle').value;
+      var newtitle= {
+        "name": title
+      };
       var x=new XMLHttpRequest();
       x.open("PATCH", "https://api.ooyala.com/v2/players/c8c7d9c27ac9429da000b3921fd7c0ec?api_key=NkNWoyOgtVpVzobHj7CucxG7X3H2.aZaYp&expires=1299991855&signature=jWwAR%2F1eYUcxRBpVn3JjqwOqbEdmPAqQs8VnDG5xNaI");
-      //x.setRequestHeader("Content-type","application/json");
-      //request.send('{"isActive": 1}');
-      x.send({name:"John Rambo"});
+      x.send(newtitle);
+      console.log(newtitle);
       document.getElementById('p1').innerHTML = player.getCurrentItemTitle();
       console.log("changing title");
       }
