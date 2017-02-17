@@ -3,23 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>V3 Player</title>
-  
-  <link rel="stylesheet" type="text/css" href="/code.css" />
-	
+  <base href="/">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 </head>
 <body class="backimage">
-  <div >
-<h1 class="fluid resize bigtitle">
-  Ooyala V3 Player
-</h1>
-</div>
+
 
   <div id='ooyalaplayer' style='width:800px;height:600px' class="resize fluid"></div>
   <div class="fluid resize" style="text-align:center ">
     <button id="pause" class="btn" onclick="onPause()">Pause Video</button>
+  </div>
+  <div>
+    <img onclick="onLoadNew()" style='width:240px;height:136px' src="https://api.ooyala.com/v2/players/c8c7d9c27ac9429da000b3921fd7c0ec?api_key=NkNWoyOgtVpVzobHj7CucxG7X3H2.aZaYp&expires=1299991855&signature=rFfHjO%2BN4AoFL6tAXWos13ETffMYolUbiwYZGf0L1Vk/primary_preview_image">
   </div>
   <div class="fluid resize" style="text-align:center ">
       <br>
@@ -87,7 +85,7 @@
            }
     }
 
-   function onChangeTitle(){
+    function onChangeTitle(){
       var title =document.getElementById('newTitle').value;
       var newtitle= {
         "name": title
@@ -100,10 +98,14 @@
       console.log("changing title");
       }
 
+    function onLoadNew(){
+      
+      OO.ready(function()
+      {
+        player= OO.Player.create('ooyalaplayer','5yMHRsOTE62A_DHs9G_iW6H0QU6veVvh',{onCreate: window.onCreate, "autoplay":true});
+      });
+
+    }
 
 
   </script>
-
-
-</body>
-</html>
