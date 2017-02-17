@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>V3 Player</title>
+  
+  <link rel="stylesheet" type="text/css" href="/code.css" />
+	
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+<body class="backimage">
+  <div >
+<h1 class="fluid resize bigtitle">
+  Ooyala V3 Player
+</h1>
+</div>
+
+  <div id='ooyalaplayer' style='width:800px;height:600px' class="resize fluid"></div>
+  <div class="fluid resize" style="text-align:center ">
+    <button id="pause" class="btn" onclick="onPause()">Pause Video</button>
+  </div>
+  <div class="fluid resize" style="text-align:center ">
+
+      <input id="newTitle" type="text" name="newTitle" value="Enter new title here"><br><br>
+      <button id="changeTitle" class="btn" onclick="onChangeTitle()">Change Title</button>
+
+  </div>
+
+  <div class="fluid resize" >
+    <p class="inf"><b>Title : </b><span id='p1'></span></p>
+    <p class="inf"><b>Description : </b><span id='p2'></span></p>
+    <p class="inf"><b>Duration : </b><span id='p3'></span></p>
+    <p class="inf"><b>Whether Player is in FullScreen?: </b><span id='p4'></span></p>
+    <p class="inf"><b>Current Item Embed Code: </b><span id='p5'></span></p>
+    <p class="inf"><b>Video :</b><span id='p6'></span></p>
+    <p class="inf"><b>Volume (0-Min,1-Max): </b><span id='p7'></span></p>
+  </div>
+
+  <script src='//player.ooyala.com/v3/c8c7d9c27ac9429da000b3921fd7c0ec'></script>
+
+  <script>
+    var player;
+    function onCreate(player) {
+
+      player.mb.subscribe('playbackReady', 'myPage', function(eventName) //Player message bus event
+      {
+        //Functions
+        document.getElementById('p1').innerHTML = player.getCurrentItemTitle();
+        document.getElementById('p2').innerHTML = player.getCurrentItemDescription() ;
+        document.getElementById('p3').innerHTML = player.getTotalTime();
+        document.getElementById('p4').innerHTML = player.getFullscreen();
+        document.getElementById('p5').innerHTML = player.getCurrentItemEmbedCode();
+        document.getElementById('p7').innerHTML = player.getVolume();
+      });
+
+      player.mb.subscribe('paused', 'myPage', function(eventName) {
+        document.getElementById('p6').innerHTML = "Paused";
+        document.getElementById('pause').innerHTML = "Play Video";
+      });
+
+      player.mb.subscribe('playing', 'myPage', function(eventName) {
+        document.getElementById('p6').innerHTML = "Playing";
+        document.getElementById('pause').innerHTML = "Pause Video";
+      });
+
+    };
+
+    OO.ready(function()
+    {
+      player= OO.Player.create('ooyalaplayer','xpN21rOTE6LmrVC2NBDe9YKfVsPNzzAo',{onCreate: window.onCreate, "autoplay":true});
+    });
+  </script>
+
+  <script>
+    var isPlaying=true;
+
+    function onPause(){
+      if(isPlaying){
+             console.log("pause");
+             player.pause();
+             isPlaying=false;
+      }else{ player.play();
+             console.log("playing");
+             isPlaying=true;
+           }
+    }
+
+    function onChangeTitle(){
+      var newtitle=document.getElementById('newTitle').value;
+      var title= {
+        "name": newtitle
+      }
+
+
+
+      var x=new XMLHttpRequest();
+      x.open("PATCH", "https://api.ooyala.com/v2/players/c8c7d9c27ac9429da000b3921fd7c0ec?api_key=NkNWoyOgtVpVzobHj7CucxG7X3H2.aZaYp&expires=1299991855&signature=jWwAR%2F1eYUcxRBpVn3JjqwOqbEdmPAqQs8VnDG5xNaI");
+      //x.setRequestHeader("Content-type","application/json");
+      //request.send('{"isActive": 1}');
+      x.send({name:"John Rambo"});
+      document.getElementById('p1').innerHTML = player.getCurrentItemTitle();
+      console.log("changing title");
+      }
+
+
+
+  </script>
+
+
+</body>
+</html>

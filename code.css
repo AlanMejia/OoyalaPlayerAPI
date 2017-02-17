@@ -1,0 +1,85 @@
+
+
+.fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.resize {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .resize {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .resize {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .resize {
+    width: 1170px;
+  }
+}
+
+.bigtitle {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: blueviolet;
+  text-align: center;
+  opacity: .7;
+  border-radius: 4px;
+}
+
+.btn {
+  color: #ffffff;
+  background-color: #7a8288;
+  border-color: #7a8288;
+  align-self: center;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.backimage  {
+  background-image: url("http://www.hdbloggers.net/wp-content/uploads/2016/11/Art-Beautiful-Wallpapers.jpg");
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: top center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed;
+}
+
+.inf{
+  color: white;
+  text-align: center;
+  background-color: blueviolet;
+  opacity: .7;
+  width: inherit;
+}
